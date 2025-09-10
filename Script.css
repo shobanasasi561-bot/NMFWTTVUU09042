@@ -1,0 +1,68 @@
+const slides = Array.from(document.querySelectorAll('.slide'));
+const total = slides.length;
+const counter = document.getElementById('slideCounter');
+let idx = 0;
+let autoplay = false;
+let timer = null;
+
+function updateCounter(){ counter.textContent = (idx+1) + " / " + total; }
+
+function show(index){
+  idx = ((index % total) + total) % total;
+  slides.forEach(s => s.classList.remove('active'));
+  slides[idx].classList.add('active');
+  updateCounter();
+  slides[idx].scrollTop = 0;
+}
+
+function next(){ show(idx+1); }
+function prev(){ show(idx-1); }
+
+const playBtn = document.getElementById('playBtn');
+function setAutoplay(on){
+  autoplay = !!on;
+  if(autoplay){
+    playBtn.textContent = '⏸ Pause';
+    timer = setInterval(next, 4500);
+  } else {
+    playBtn.textContent = '▶ Play';
+    clearInterval(timer);
+  }
+}
+playBtn.addEventListener('click', ()=> setAutoplay(!autoplay));
+
+document.getElementById('nextBtn').addEventListener('click', ()=> { next(); setAutoplay(false); });
+document.getElementById('prevBtn').addEventListener('click', ()=> { prev(); setAutoplay(false); });
+
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'ArrowRight') { next(); setAutoplay(false); }
+  if(e.key === 'ArrowLeft') { prev(); setAutoplay(false); }
+  if(e.key === ' '){ setAutoplay(!autoplay); e.preventDefault(); }
+});
+
+let touchStartX = 0;
+document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+document.addEventListener('touchend', e => {
+  let touchEndX = e.changedTouches[0].screenX;
+  if(touchEndX - touchStartX > 60) prev();
+  if(touchStartX - touchEndX > 60) next();
+});
+
+show(0);
+
+document.addEventListener('mousemove', e => {
+  const t = document.createElement('div');
+  t.style.position = 'fixed';
+  t.style.left = (e.clientX - 6) + 'px';
+  t.style.top = (e.clientY - 6) + 'px';
+  t.style.width = t.style.height = '12px';
+  t.style.borderRadius = '999px';
+  t.style.pointerEvents = 'none';
+  t.style.background = 'rgba(255,255,255,0.6)';
+  t.style.opacity = '0.9';
+  t.style.transition = 'transform 500ms ease, opacity 500ms ease';
+  document.body.appendChild(t);
+  requestAnimationFrame(()=> t.style.transform = 'scale(2)');
+  setTimeout(()=> { t.style.opacity = '0'; }, 120);
+  setTimeout(()=> t.remove(), 700);
+});

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Interactive Portfolio: Using Html, CSS and JavaScript</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container" role="main">
+    <!-- Slide 1 -->
+    <section class="slide active" data-index="1">
+      <div class="front" aria-label="Project cover">
+        <div style="max-width:900px;">
+          <div style="display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px">
+            <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,var(--accent),#ffd27a);display:flex;align-items:center;justify-content:center;font-weight:900;box-shadow:0 8px 18px rgba(0,0,0,0.18)"></div>
+          </div>
+          <div class="project-title">Interactive Portfolio: Using Html, CSS and JavaScript</div>
+          <div class="project-sub">•Unique • Responsive </div>
+          <div style="margin-top:26px">
+            <div class="presented">Created by <strong>Shobana P</strong></div>
+            <div class="tagline">"Dream Big, Work Smart, Shine Bright"</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: Introduction -->
+    <section class="slide" data-index="2">
+      <h1>Introduction / Contact</h1>
+      <div class="card">
+        <div class="contact-grid">
+          <div>
+            <div class="contact-item">Name: <span class="muted">Shobana. P</span></div>
+            <div class="contact-item">Location: <span class="muted">O.M. Mangalam, Sriperumbandur, Kanchipuram District</span></div>
+          </div>
+          <div style="text-align:right">
+            <div class="contact-item">Mobile: <span class="muted">9342214796</span></div>
+            <div class="contact-item">Email: <span class="muted">shobanasasi561@gmail.com</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:8px;">Welcome — this portfolio highlights my profile, skills, projects and aspirations in a presentation-like web format.</p>
+    </section>
+
+    <!-- Slide 3 onwards (Career, Education, Skills, Projects, etc.) -->
+    <!-- Keep the rest of your slides here, unchanged -->
+    <!-- ... -->
+
+    <!-- Decorative bubbles -->
+    <div class="decor">
+      <div class="bubble" style="width:160px;height:160px;left:-40px;top:40px;opacity:0.12"></div>
+      <div class="bubble" style="width:120px;height:120px;right:40px;bottom:80px;opacity:0.12"></div>
+      <div class="bubble" style="width:80px;height:80px;left:60px;bottom:140px;opacity:0.08"></div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button class="btn" id="prevBtn">◀ Prev</button>
+    <button class="btn" id="playBtn">▶ Play</button>
+    <button class="btn" id="nextBtn">Next ▶</button>
+  </div>
+
+  <div class="counter" id="slideCounter">1 / 9</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
